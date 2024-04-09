@@ -1,0 +1,17 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container{
+  background-color: none;
+  /* padding: 0px; */
+  /* margin-left: 0px; */
+  /* margin-right: 0px; */
+  width: 100%;
+}
+
+.cont11{
+  background-color: #b9b9b965;
+}

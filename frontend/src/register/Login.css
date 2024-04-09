@@ -1,0 +1,50 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+form{
+  width: 100%;
+  margin: auto;
+}
+
+.form-div{
+  width: 40%;
+  margin: auto;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+  /* border: 1px solid #b9b9b9; */
+}
+
+input{
+  height: 48px;
+}
+
+.go{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+
+}
+
+.grid >button{
+  height: 48px;
+  border:  none;
+}
+.facebook{
+  background-color: #2D4373;
+  color: white;
+}
+.google{
+  background-color: #4285F4;
+  color: white;
+}

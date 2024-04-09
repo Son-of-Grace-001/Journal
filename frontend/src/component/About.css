@@ -1,0 +1,24 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.about{
+  padding-left: 100px;
+  padding-right: 100px;
+  /* padding-top: 30px; */
+  /* padding-bottom: 60px; */
+}
+
+
+.about-t{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #36454F;
+}
+
+.about-txt{
+  text-align: justify;
+}

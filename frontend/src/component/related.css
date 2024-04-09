@@ -1,0 +1,30 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#caro{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#carouselExampleIndicators{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.rel{
+  color: #36454F;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+img{
+  height:50%;
+}
+
+#card-title{
+  color: #36454F;
+}
