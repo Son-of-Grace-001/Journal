@@ -42,13 +42,14 @@ class RegistrationView(APIView):
 class JournalView(APIView):
     def get(self, request):
         # Query all journal entries
-        journal_entries = Journal.objects.all()
+        journal_entries = Journal.objects.all().order_by("-created_at")
         # Serialize journal entries data
-        serializer = JournalSerializer(journal_entries, many=True)
+        serializer = JournalSerializer(journal_entries, many=True, context={"request":request})
         return Response(serializer.data)
 
 class UploadView (APIView):
     def post (self, request):
+        data = request.POST.get("data")
         firstname = request.data.get('firstname')
         lastname = request.data.get('lastname')
         title = request.data.get('title')
@@ -57,7 +58,6 @@ class UploadView (APIView):
         aim = request.data.get('aim')
         objective = request.data.get('objective')
         methodology = request.data.get('methodology')
-
         uploaded_file = Journal.objects.create(
             fname=firstname,
             lname=lastname,
@@ -75,5 +75,5 @@ class UploadView (APIView):
 class JournalDetailView(APIView):
     def get(self, request, pk):
         journal = get_object_or_404(Journal, pk=pk)
-        serializer = JournalSerializer(journal)
+        serializer = JournalSerializer(journal, context={"request":request})
         return JsonResponse(serializer.data)

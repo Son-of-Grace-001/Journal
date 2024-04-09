@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
+import {useParams} from "react-router-dom"
 export const Review = () => {
     const [review, setReview] = useState([]); // Initialize state to hold review data
-
+    const {id} = useParams()
     useEffect(() => {
         const fetchReview = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/journal/<int:pk>/');
+                const response = await fetch(`http://localhost:8000/api/journal/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch Review content');
                 }
                 const data = await response.json();
-                console.log(data);
                 setReview(data);
             } catch (error) {
                 console.error('Failed to fetch review entries:', error);
@@ -33,14 +32,14 @@ export const Review = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {review.map(entry => (
-                        <tr key={entry.id}>
-                            <td>{entry.fname} {entry.lname}</td>
-                            <td>{entry.aim}</td>
-                            <td>{entry.objective}</td>
-                            <td>{entry.methodology}</td>
+                    
+                        <tr >
+                            <td>{review?.fname} {review?.lname}</td>
+                            <td>{review?.aim}</td>
+                            <td>{review?.objective}</td>
+                            <td>{review?.methodology}</td>
                         </tr>
-                    ))}
+               
                 </tbody>
             </table>
         </div>

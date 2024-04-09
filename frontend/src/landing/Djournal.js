@@ -13,7 +13,6 @@ function Djournal() {
                     throw new Error('Failed to fetch journal entries');
                 }
                 const data = await response.json();
-                console.log (data);
                 setJournalEntries(data);
             } catch (error) {
                 console.error('Failed to fetch journal entries:', error);
