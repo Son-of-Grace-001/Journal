@@ -17,14 +17,23 @@ export const Upload = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
+      let formData = new FormData()
+      formData.append("firstname", firstname)
+      formData.append("lastname", lastname)
+      formData.append("title", title)
+      formData.append("image", image)
+      formData.append("folder", folder)
+      formData.append("aim", aim)
+      formData.append("objective", objective)
+      formData.append("methodology", methodology)
       const response = await fetch('http://127.0.0.1:8000/api/upload/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ firstname, lastname, title, image, folder, aim, objective, methodology }),
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
+        // body: JSON.stringify({ firstname, lastname, title, image, folder, aim, objective, methodology }),
+        body: formData
       });
 
       if (response.ok) {
@@ -49,7 +58,7 @@ export const Upload = () => {
   return (
     <div className="form-div">
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit} action="http://localhost:8000/api/upload" method="post" enctype="multipart/form-data">
+      <form onSubmit={handleSubmit} >
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Lastname</label>
           <input type="text" className="form-control" id="email" placeholder='Enter your lastname'
@@ -71,13 +80,13 @@ export const Upload = () => {
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Journal</label>
           <input type="file" className="form-control" id="username" placeholder="Enter your project file" 
-            value={folder} onChange={(e) => setFolder(e.target.value)}  accept=".pdf, .doc, .docx"
+            onChange={(e) => setFolder(e.target.files[0])}  accept=".pdf, .doc, .docx"
           />
         </div>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Image</label>
           <input type="file" className="form-control" id="username" placeholder="Enter journal front cover" 
-            value={image} onChange={(e) => setImage(e.target.value)}
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
         <div className="mb-3">

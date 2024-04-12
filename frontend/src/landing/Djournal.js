@@ -13,7 +13,6 @@ function Djournal() {
                     throw new Error('Failed to fetch journal entries');
                 }
                 const data = await response.json();
-                console.log (data);
                 setJournalEntries(data);
             } catch (error) {
                 console.error('Failed to fetch journal entries:', error);
@@ -36,6 +35,7 @@ function Djournal() {
                             <div>
                                 <h5 className='name'>{entry.title}</h5>
                                 <h6 className='author'>{entry.fname} {entry.lname}</h6>
+                                <p  style={{fontSize:'12px'}}> {entry.created_at} </p>
                             </div>
                             <div className='bottom'>
                                 <div>
@@ -44,7 +44,7 @@ function Djournal() {
                                     </Link>
                                 </div>
                                 <div>
-                                    <a href={entry.folder} download>
+                                    <a href={entry.folder} download target="blank">
                                         <button id="bttns" className='btn btn-primary'>Download</button>
                                     </a>
                                 </div>
