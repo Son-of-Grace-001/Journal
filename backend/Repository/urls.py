@@ -6,6 +6,6 @@ urlpatterns = [
     path('register/', RegistrationView.as_view(), name='register'),
     path('upload/', UploadView.as_view(), name='upload-api'),
     path('journal/', JournalView.as_view(), name='journal-api'),
-    path('journal/<int:pk>/', JournalDetailView.as_view(), name='journal-detail')
+    path('journal/<int:pk>/', JournalDetailView.as_view(), name='journal-detail'),
     # Other URL patterns for your project
 ]

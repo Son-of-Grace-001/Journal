@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Repository',
     "corsheaders",
     'rest_framework',
+    'drf_yasg',
     # 'cloudinary_storage',
     # 'django.contrib.staticfiles',
     # 'cloudinary'
