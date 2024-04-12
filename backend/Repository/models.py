@@ -7,7 +7,11 @@ class Journal(models.Model):
     folder = models.FileField(upload_to="journals/")
     fname = models.CharField(max_length=200)
     lname = models.CharField (max_length=200)
+<<<<<<< HEAD
     created_at = models.DateField(auto_now_add=True)
+=======
+    created_at = models.DateTimeField(auto_now_add=True)
+>>>>>>> 1812c8e58f35c1e16a20bf75f0f3088b3168f91f
     image = models.ImageField(upload_to="images/")
     aim = models.CharField(max_length=200)
     objective = models.TextField()
