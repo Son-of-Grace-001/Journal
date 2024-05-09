@@ -1,66 +1,73 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { useState } from 'react'
+import { Link, Navigate } from 'react-router-dom'
 import './Login.css'
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 
 export const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
+
+  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/login/', {
+
+    try{
+      const response = await fetch ('http://localhost:8000/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({username, password}),
       });
 
       if (response.ok) {
-        // Handle successful login (e.g., redirect user)
-        setLoggedIn(true);
-      } else {
-        // Handle failed login (e.g., display error message)
-        console.error('Login failed');
+        setRedirectToLogin(true)
+        console.log('login successful')
+      }else{
+        console.log('login failed')
+        const data = await response.json();
+        setError(data.error || 'Invalid email or password  ')
       }
-    } catch (error) {
-      console.error('Error:', error);
+    } catch (error){
+      console.error('Error:', error)
+      setError('An unexpected error occurred. Please try again')
     }
   };
 
-  if (loggedIn) {
-    // Redirect to login page after successful registration
-    return <Navigate to="/dashboard" />;
+  if (redirectToLogin){
+    return <Navigate to="/dashboard"/>
   }
 
   return (
-    <div className=" form-div ">
-      <form onSubmit={handleSubmit}>
-        <div className='grid'>
-          <button className='google'>Login with Google</button>
-          <button className='facebook'>Login with Facebook</button>
-          <button>Login with Apple</button>
-        </div>
-        <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">Username</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter your email account'
-            value={username} onChange={(e) => setUsername(e.target.value)}
+    <div className='div-form'>
+      <div className="signup-form-container">
+        <h2 className="signup">Login Form</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <label For="email">Username:</label>
+          <input className="input"
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-        <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter your password" 
-            value={password} onChange={(e) => setPassword(e.target.value)}
+    
+          <label htmlFor="password">Password:</label>
+          <input className="input"
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword (e.target.value)}
           />
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-        <p className='go'> Do not have an account ? pls click <span><Link to='/signup'>here</Link></span> to signup</p>
-      </form>
+         
+          <button type="submit" className="submit-bttn">Login</button>
+          <p className='go'> Don't have an account yet? Please click <span> <Link className="here" to='/signup'>here</Link></span> to signup</p>
+        </form>
+      </div>
     </div>
   )
 }

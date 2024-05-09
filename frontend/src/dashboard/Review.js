@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useParams} from "react-router-dom"
+import './Review.css'
+
 export const Review = () => {
     const [review, setReview] = useState([]); // Initialize state to hold review data
     const {id} = useParams()
@@ -17,12 +19,12 @@ export const Review = () => {
             }
         };
         fetchReview();
-    }, []);
+    }, [id]);
 
     return (
         <div>
-            <h2>Review Details</h2>
-            <table>
+            <h2 className='reviews'>Review Details</h2>
+            <table className='review-table'>
                 <thead>
                     <tr>
                         <th>Name</th>

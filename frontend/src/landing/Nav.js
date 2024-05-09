@@ -1,45 +1,42 @@
 import React from 'react'
-import au from './au.png'
-import './Header.css'
-import {Link} from 'react-router-dom'
+import logo from './log.jpeg'
+import { Link } from 'react-router-dom'
+import './Nav.css'
 
-function Nav () {
+export const Nav = () => {
   return (
     <div>
-      <div className='header'>
-        <div className='left'>
-          <div className='logo'>
-            <a href='/'><img className='logo-img' src={au} alt='au logo'/></a>
+      <div className='nav-flex'>
+        <div className='nav-left'>
+          <div className='nav-logo-div'>
+            <img className='logo' src={logo} alt='logo'/>
           </div>
-
-          <div className='text'>
-            <h3 className='literature'>
-              Literature Review Repository
-            </h3>
+          <div className='nav-name-div'>
+            <h3 className='repo'>Repository</h3>
           </div>
         </div>
 
-
-        <div className='right'>
-          <ul id="list" className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/dashboard">Home</a>
-            </li>
-            <li className="nav-item">
-              <Link id="upload" className="nav-link" to="/upload">Upload</Link>
-            </li>
+        <div className='middle'>
+          <ul className='nav-option'>
+            <a href='/'><li className='nav-items'>Home</li></a>
+            <li className='nav-items'><a href='#about'>About Us</a></li>
+            <li className='nav-items'><a href='#contact'>Contact Us</a></li>
           </ul>
-          <input className='search' type="search" placeholder="Enter the name of journal"/>
-          <div className='btn-div'>
-            <Link to="/">
-              <button id='btn' className='btn btn-primary'>logout</button>
+        </div>
+
+        <div className='nav-right'>
+          <div className='nav-login'>
+            <Link to='/login' className='login'>
+              <button className='button'>Login</button>
             </Link>
-            
+          </div>
+          <div className='nav-sign'>
+            <Link to='/signup'>
+              <button className='button2'>Signup</button>
+            </Link>
           </div>
         </div>
-       </div>
+      </div>
     </div>
   )
 }
-
-export default Nav;

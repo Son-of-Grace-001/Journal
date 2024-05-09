@@ -6,8 +6,10 @@ from django.http import JsonResponse
 from rest_framework import status
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from .models import Journal
+from .models import Journal, Contact
 from .serializers import JournalSerializer
+from django.core.mail import send_mail
+from django.conf import settings
 
 class LoginView(APIView):
     def post(self, request):
@@ -36,6 +38,10 @@ class RegistrationView(APIView):
         user = User.objects.create_user(username=username, email=email, password=password)
         # You can add additional fields or perform other operations here
         user.save()
+
+        # subject = "Registration Successful"
+        # message = f"Hello {username} \n\n We at Repository appreciate you for registering with us. \n\n Warm Regards \n\n Thank you"
+        # send_mail (subject, message, settings.EMAIL_HOST_USER, [user.email])
         
         return Response({'message': 'Registration successful'}, status=status.HTTP_201_CREATED)
 
@@ -77,3 +83,31 @@ class JournalDetailView(APIView):
         journal = get_object_or_404(Journal, pk=pk)
         serializer = JournalSerializer(journal, context={"request":request})
         return JsonResponse(serializer.data)
+
+class ContactView (APIView):
+    def post (self, request):
+        name = request.data.get ('name')
+        email = request.data.get ('email')
+        subject = request.data.get ('subject')
+        message = request.data.get ('message')
+
+        if not name or not email or not subject or not message:
+            return Response ({'message': 'All fields are required'}, status=400)
+        
+        contact = Contact.objects.create(
+            name = name,
+            email = email,
+            subject = subject,
+            message = message
+        )
+        contact.save()
+
+        subject = "Message Received"
+        message = f"Hello {name} \n\n We at MedLab have received your message and we will get back to you as soon as possible. \n\n Warm Regards \n\n Thank you"
+        send_mail (subject, message, settings.EMAIL_HOST_USER, [contact.email])
+
+        subject = "New Message"
+        message = f"A new message was received from {name} with the email {email}, pls attend to it"
+        send_mail (subject, message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER])
+
+        return Response({'message': 'Contact created successfully'}, status=201)

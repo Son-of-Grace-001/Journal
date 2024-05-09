@@ -1,0 +1,92 @@
+*{
+  padding: 0%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nav-flex{
+  position: fixed;
+  background-color: #f9f9f9;
+  top: 0;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 100px 0px 100px;
+}
+
+.nav-left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  width:60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.nav-right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button, .button2{
+  width: 80px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  background-color: blue;
+  border-radius: 8px;
+  color: #f9f9f9;
+  margin-right: 10px;
+}
+
+.button:hover,
+.button2:hover{
+  cursor: pointer;
+}
+
+.button2{
+  background-color: #b9b9b986;
+  color: #121212;
+}
+
+.login{
+  text-decoration: none;
+}
+.middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a{
+  text-decoration: none;
+  color: #121212;
+}
+
+li{
+  margin-right: 25px;
+  color: #121212;
+}
+
+li:hover{
+  border-bottom: 2px solid #121212;
+}
+
+.repo{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}

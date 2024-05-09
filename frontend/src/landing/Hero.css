@@ -4,48 +4,46 @@
   box-sizing: border-box;
 }
 
-.heroo{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
-  /* height: 300px; */
+.hero{
+  margin-top: 100px;
 }
 
-Link{
-  color: white;
-  text-decoration: none;
-}
-
-.leftt{
-  display: flex;
-  flex-direction: column;
-  /* text-align: center; */
-  /* justify-content: center; */
-  /* padding-left: 40px; */
-  /* padding-right: 50px; */
-  line-height: 20px;
-}
-.hero-head{
-  color:#36454F ;
-  margin-top: 40px;
-}
-
-.img-hero{
+.hero-bg{
   width: 100%;
-  height: 300px;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-heads{
+  color: #12121283;
+  padding-top: 100px;
+  padding-left: 150px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .hero-text{
+  color: #12121283;
   margin-top: 15px;
-  margin-bottom: 25px;
-  text-align: justify;
-}
-#btnn{
-  width: 100%;
+  padding-left: 150px;
+  font-size: 18px;
 }
 
+.hero-button{
+  width: 200px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  background-color: blue;
+  border-radius: 8px;
+  color: #f9f9f9;
+  margin-right: 10px;
+  margin-left: 150px;
+  margin-top: 25px;
+}
 
-
-
+.hero-button:hover{
+  cursor: pointer;
+}

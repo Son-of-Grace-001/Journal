@@ -24,6 +24,7 @@ export const SignUp = () => {
 
       if (response.ok) {
         // Handle successful registration (e.g., display success message)
+        alert ('Registration Successful')
         setRedirectToLogin(true);
       } else {
         // Handle failed registration (e.g., display error message)
@@ -43,13 +44,9 @@ export const SignUp = () => {
 
   return (
     <div className="form-div">
+      <form onSubmit={handleSubmit} className='form'>
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className='grid'>
-          <button className='google'>Signup with Google</button>
-          <button className='facebook'>Signup with Facebook</button>
-          <button>Signup with Apple</button>
-        </div>
+        <h2 className="signup">Sign Up Form</h2>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
           <input type="email" className="form-control" id="email" placeholder='Enter your email account'
@@ -68,8 +65,8 @@ export const SignUp = () => {
             value={username} onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-        <p className='go'> Already have an account ? Please click <span><Link to='/login'>here</Link></span> to login</p>
+        <button type="submit" className="submit-bttn">Submit</button>
+        <p className='go'> Already have an account ? Please click <span><Link className='here' to='/login'>here</Link></span> to login</p>
       </form>
     </div>
   );

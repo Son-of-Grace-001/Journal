@@ -7,7 +7,7 @@ class Journal(models.Model):
     folder = models.FileField(upload_to="journals/")
     fname = models.CharField(max_length=200)
     lname = models.CharField (max_length=200)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to="images/")
     aim = models.CharField(max_length=200)
     objective = models.TextField()
@@ -15,3 +15,12 @@ class Journal(models.Model):
 
     def __str__(self):
         return self.fname
+
+class Contact (models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    message = models.TextField()
+    subject = models.CharField(max_length=200)
+
+    def __str___ (self):
+        return self.name 

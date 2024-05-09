@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LoginView, RegistrationView, JournalView, UploadView, JournalDetailView
+from .views import LoginView, RegistrationView, JournalView, UploadView, JournalDetailView, ContactView
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
@@ -7,5 +7,5 @@ urlpatterns = [
     path('upload/', UploadView.as_view(), name='upload-api'),
     path('journal/', JournalView.as_view(), name='journal-api'),
     path('journal/<int:pk>/', JournalDetailView.as_view(), name='journal-detail'),
-    # Other URL patterns for your project
+    path('contacts/', ContactView.as_view())
 ]

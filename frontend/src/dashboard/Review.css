@@ -1,0 +1,40 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.reviews{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+}
+
+
+.review-table th, .review-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.review-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.review-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.review-table tbody tr:hover {
+  background-color: #ddd;
+}
+

@@ -1,0 +1,43 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hi{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60%;
+  gap:20px;
+  border:1px solid #ccc;
+  margin: auto;
+  padding:30px;
+  background-color: #f9f9f9;
+  margin-top: 20px;
+}
+
+input{
+  margin-bottom: 5px;
+}
+
+.form-divv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  width: 100%;
+}
+
+.btnns{
+  border: 1px solid blue;
+  height: 40px;  
+  background-color: blue;
+  color: #f9f9f9;  
+  margin-top: auto;           
+}
+h3{
+  text-align: center;
+  margin-top:30px;
+  /* border: 1px solid #ccc;
+  border-bottom: none; */
+}
