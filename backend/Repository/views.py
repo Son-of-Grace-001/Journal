@@ -35,13 +35,13 @@ class RegistrationView(APIView):
             return Response({'message': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Create a new user
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create(username=username, email=email, password=password)
         # You can add additional fields or perform other operations here
         user.save()
 
-        # subject = "Registration Successful"
-        # message = f"Hello {username} \n\n We at Repository appreciate you for registering with us. \n\n Warm Regards \n\n Thank you"
-        # send_mail (subject, message, settings.EMAIL_HOST_USER, [user.email])
+        subject = "Registration Successful"
+        message = f"Hello {username} \n\n We at Repository appreciate you for registering with us. \n\n Warm Regards \n\n Thank you"
+        send_mail (subject, message, settings.EMAIL_HOST_USER, [email])
         
         return Response({'message': 'Registration successful'}, status=status.HTTP_201_CREATED)
 
@@ -53,9 +53,8 @@ class JournalView(APIView):
         serializer = JournalSerializer(journal_entries, many=True, context={"request":request})
         return Response(serializer.data)
 
-class UploadView (APIView):
-    def post (self, request):
-        data = request.POST.get("data")
+class UploadView(APIView):
+    def post(self, request):
         firstname = request.data.get('firstname')
         lastname = request.data.get('lastname')
         title = request.data.get('title')
@@ -64,19 +63,34 @@ class UploadView (APIView):
         aim = request.data.get('aim')
         objective = request.data.get('objective')
         methodology = request.data.get('methodology')
+        
+        # Initialize email variable with a default value
+        email = None
+        
+        if request.user.is_authenticated:
+            email = request.user.email
+
         uploaded_file = Journal.objects.create(
             fname=firstname,
             lname=lastname,
             title=title,
             image=image_file,
             folder=journal_file,
-            aim= aim,
+            aim=aim,
             objective=objective,
             methodology=methodology
         )
         uploaded_file.save()
 
+        subject = "Upload Received"
+        message = f"Hello {firstname} {lastname} \n\n We at Repository received your upload. We appreciate you for your contribution to the betterment of research and project \n\n Warm Regards \n\n Thank you"
+        
+        # Check if email is not None before sending mail
+        if email:
+            send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
+
         return Response({'message': 'Upload successful'})
+
 
 class JournalDetailView(APIView):
     def get(self, request, pk):
@@ -103,8 +117,8 @@ class ContactView (APIView):
         contact.save()
 
         subject = "Message Received"
-        message = f"Hello {name} \n\n We at MedLab have received your message and we will get back to you as soon as possible. \n\n Warm Regards \n\n Thank you"
-        send_mail (subject, message, settings.EMAIL_HOST_USER, [contact.email])
+        message = f"Hello {name} \n\n We at Repository have received your message and we will get back to you as soon as possible. \n\n Warm Regards \n\n Thank you"
+        send_mail (subject, message, settings.EMAIL_HOST_USER, [email])
 
         subject = "New Message"
         message = f"A new message was received from {name} with the email {email}, pls attend to it"
