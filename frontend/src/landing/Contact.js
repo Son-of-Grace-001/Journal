@@ -34,11 +34,11 @@ export const Contact = () => {
   return (
     <div id='contact'>
       <h3 className='serv'> Contact Us</h3>
-        <div className='line'>
-          <div className='lin1'></div>
-          <div className='lin2'></div>
-          <div className='lin3'></div>
-        </div>
+      <div className='line'>
+        <div className='lin1'></div>
+        <div className='lin2'></div>
+        <div className='lin3'></div>
+      </div>
       <div className='contact'>
         <div className='left-contact'>
           <div className='firstt'>

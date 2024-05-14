@@ -29,11 +29,11 @@ export const Footer = () => {
           </div>
           <div className="footer-3">
             <div>
-              <h5>Phone:</h5>
+              <h5 className='ph'>Phone:</h5>
               <a className='hey' href='tel:+2349039672814'>09039672814</a>
             </div>
             <div>
-              <h5>Email:</h5>
+              <h5 className='ph'>Email:</h5>
               <a className='hey' href='mailto:horlharmighty2000@gmail.com'>horlharmighty2000@gmail.com</a>
             </div>
             <div className='ok'>

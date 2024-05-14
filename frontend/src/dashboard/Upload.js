@@ -60,8 +60,8 @@ export const Upload = () => {
       <h3>Upload Form</h3>
       <div className="form-divv">
         <form className='hi' onSubmit={handleSubmit} >
-        {error && <p className="error-message">{error}</p>}
           <div>
+            {error && <p className="error-message">{error}</p>}
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Lastname</label>
               <input type="text" className="form-control" id="email" placeholder='Enter your lastname'
